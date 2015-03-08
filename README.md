@@ -1,61 +1,7 @@
-# ngStomp
+# STOMP-UI
 
-> [STOMP](http://jmesnil.net/stomp-websocket/doc/) promised for [AngularJS](https://angularjs.org)
+> [STOMP](http://jmesnil.net/stomp-websocket/doc/)-UI based on [ngStomp](https://github.com/beevelop/ng-stomp)
 
-## Installation
+# Usage
 
-Install via Bower:
-```bash
-bower install --save ngStomp
-```
-
-Add SockJS + STOMP + (minified) Stompie:
-```html
-<script src="/bower_components/sockjs/sockjs.min.js"></script>
-<script src="/bower_components/stomp-websocket/lib/stomp.min.js"></script>
-<script src="/bower_components/stompie/stompie.min.js"></script>
-```
-
-Declare the module as a dependency in your application:
-```js
-angular.module('yourApp', ['ngStomp']);
-```
-
-## Usage
-
-Inject it in your controller:
-```js
-angular
-    .module('yourApp')
-    .controller('YourCtrl', ['$stomp', '$scope', function ($stomp, $scope) {
-        // ...
-    }
-```
-
-Use and subscribe:
-```js
-//frame = CONNECTED headers
-$stompie.using('/your/stomp/endpoint', function (frame) {
-    // The $scope bindings are updated for you so no need to $scope.$apply.
-    // The subscription object is returned by the method.
-    var subscription = $stompie.subscribe('/your/topic', function (data) {
-        $scope.foo = data;
-    });
-
-    // Unsubscribe using said subscription object.
-    subscription.unsubscribe();
-
-    // Send messages to a STOMP broker.
-    $stompie.send('/some/queue', {
-        message: 'some message'
-    }, {
-        priority: 9,
-        custom: 42 //Custom Headers
-    });
-
-    // Disconnect from the socket.
-    $stompie.disconnect(function () {
-        // Called once you're out...
-    });
-});
-```
+> Check it out: [http://beevelop.github.io/stomp-ui]
