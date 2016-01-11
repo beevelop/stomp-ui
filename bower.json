@@ -1,11 +1,11 @@
 {
   "name": "stomp-ui",
-  "version": "0.0.1-alpha.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/beevelop/stomp-ui",
   "authors": [
-    "Maik Hummel <yo@beevelop.com>"
+    "Maik Hummel <m@ikhummel.com>"
   ],
-  "license": "WTFPL",
+  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "angularjs": "*",
-    "ng-stomp": "*"
+    "angular": "angularjs#~1.4.8",
+    "ng-stomp": "master"
   }
 }

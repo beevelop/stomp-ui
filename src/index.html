@@ -1,134 +1,134 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>STOMP-UI</title>
-    <style type="text/css">
-        body, html {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 1%;
-            box-sizing: border-box;
-            font-family: sans-serif;
-            font-size: 0.9em;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <title>STOMP-UI</title>
+  <style type="text/css">
+    body, html {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 1%;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      font-size: 0.9em;
+      text-align: center;
+    }
 
-        textarea#log {
-            height: 100%;
-            width: 69%;
-            display: inline-block;
-            border-radius: 2px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
-            background-color: rgb(255, 255, 255);
-            outline: none;
-            border: none;
-        }
+    textarea#log {
+      height: 100%;
+      width: 69%;
+      display: inline-block;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px, rgba(0, 0, 0, 0.0980392) 0 0 3px;
+      background-color: rgb(255, 255, 255);
+      outline: none;
+      border: none;
+    }
 
-        textarea {
-            font-family: monospace;
-            min-height: 80px;
-            min-width: 300px;
-            border: 0;
-            outline: none;
-            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-        }
+    textarea {
+      font-family: monospace;
+      min-height: 80px;
+      min-width: 300px;
+      border: 0;
+      outline: none;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    }
 
-        .sidebar {
-            width: 360px;
-            display: inline-block;
-            vertical-align: top;
-        }
+    .sidebar {
+      width: 360px;
+      display: inline-block;
+      vertical-align: top;
+    }
 
-        .box {
-            display: block;
-            min-width: 300px;
-            width: 95%;
-            box-sizing: border-box;
-            padding: 30px 10px 10px;
-            margin: 10% 0;
-            border-radius: 2px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
-            background-color: rgb(255, 255, 255);
-            position: relative;
-        }
+    .box {
+      display: block;
+      min-width: 300px;
+      width: 95%;
+      box-sizing: border-box;
+      padding: 30px 10px 10px;
+      margin: 10% 0;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px, rgba(0, 0, 0, 0.0980392) 0 0 3px;
+      background-color: rgb(255, 255, 255);
+      position: relative;
+    }
 
-        .up {
-            position: absolute;
-            left: 4px;
-            top: 4px;
-            color: rgba(0, 0, 0, 0.5);
-        }
+    .up {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      color: rgba(0, 0, 0, 0.5);
+    }
 
-        .up-right {
-            position: absolute;
-            right: 4px;
-            top: 4px;
-        }
+    .up-right {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+    }
 
-        .full {
-            height: 100%;
-            width: 100%;
-        }
+    .full {
+      height: 100%;
+      width: 100%;
+    }
 
-        hr {
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    hr {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body ng-app="stomp-ui" ng-controller="AppCtrl">
 
 <div class="sidebar">
-    <div class="box">
-        <span class="up">1. Connect</span>
-        <button class="up-right" ng-click="connect()">Connect to Endpoint</button>
+  <div class="box">
+    <span class="up">1. Connect</span>
+    <button class="up-right" ng-click="connect()">Connect to Endpoint</button>
 
-        <label>
-            Endpoint:
-            <input ng-model="url" placeholder="url">
-        </label>
-        <hr />
-        <label>
-            Headers:
-            <textarea ng-model="connectHeaders" placeholder="headers"></textarea>
-        </label>
-    </div>
-    <div class="box">
-        <span class="up">2. Subscribe</span>
-        <button class="up-right" ng-click="subscribe()">Subscribe to destination</button>
+    <label>
+      Endpoint:
+      <input ng-model="url" placeholder="url">
+    </label>
+    <hr/>
+    <label>
+      Headers:
+      <textarea ng-model="connectHeaders" placeholder="headers"></textarea>
+    </label>
+  </div>
+  <div class="box">
+    <span class="up">2. Subscribe</span>
+    <button class="up-right" ng-click="subscribe()">Subscribe to destination</button>
 
-        <label>
-            Queue:
-            <input ng-model="client_destination" placeholder="Client-Destination">
-        </label><br />
-    </div>
-    <div class="box">
-        <span class="up">3. Send</span>
-        <button class="up-right" ng-click="send()">Send message to server</button>
+    <label>
+      Queue:
+      <input ng-model="client_destination" placeholder="Client-Destination">
+    </label><br/>
+  </div>
+  <div class="box">
+    <span class="up">3. Send</span>
+    <button class="up-right" ng-click="send()">Send message to server</button>
 
-        <label>
-            Server-Destination:
-            <input ng-model="server_destination" placeholder="channel">
-        </label>
-        <hr />
-        <label>
-            Body / Payload
-            <textarea ng-model="payload" size="50" class="full" placeholder="payload"></textarea>
-        </label>
-        <hr />
-        <label>
-            Headers
-            <textarea ng-model="headers" size="50" class="full" placeholder="headers"></textarea>
-        </label>
-    </div>
+    <label>
+      Server-Destination:
+      <input ng-model="server_destination" placeholder="channel">
+    </label>
+    <hr/>
+    <label>
+      Body / Payload
+      <textarea ng-model="payload" size="50" class="full" placeholder="payload"></textarea>
+    </label>
+    <hr/>
+    <label>
+      Headers
+      <textarea ng-model="headers" size="50" class="full" placeholder="headers"></textarea>
+    </label>
+  </div>
 
 </div>
 
 <textarea id="log"></textarea>
 
 <!-- build:js deps.min.js -->
-<script src="../bower_components/angularjs/angular.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
 <script src="../bower_components/sockjs/sockjs.js"></script>
 <script src="../bower_components/stomp-websocket/lib/stomp.js"></script>
 <script src="../bower_components/ng-stomp/ng-stomp.js"></script>
