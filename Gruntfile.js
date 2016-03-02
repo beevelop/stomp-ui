@@ -1,6 +1,5 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-
     clean: {
       all: ['dist/']
     },
@@ -11,7 +10,7 @@ module.exports = function (grunt) {
           'bower_components/angular/angular.js',
           'bower_components/sockjs/sockjs.js',
           'bower_components/stomp-websocket/lib/stomp.js',
-          'bower_components/ng-stomp/ng-stomp.js'],
+          'bower_components/ng-stomp/dist/ng-stomp.standalone.min.js'],
         dest: 'dist/deps.min.js'
       }
     },
@@ -31,16 +30,18 @@ module.exports = function (grunt) {
         }
       }
     },
-    jshint: {
-      all: ['src/*.js']
+    standard: {
+      app: {
+        src: ['src/*.js']
+      }
     }
-  });
+  })
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-processhtml');
+  grunt.loadNpmTasks('grunt-standard')
+  grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.loadNpmTasks('grunt-contrib-clean')
+  grunt.loadNpmTasks('grunt-processhtml')
 
-  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'processhtml']);
-};
+  grunt.registerTask('default', ['standard', 'clean', 'concat', 'uglify', 'processhtml'])
+}
